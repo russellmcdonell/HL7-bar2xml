@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bar2xml Example01",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "bar2xml.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example01.hl7", "-S", "schema/v2.4", "-v", "3" ]
+        },
+        {
+            "name": "bar2xml Example02",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "bar2xml.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example02.hl7", "-S", "schema/v2.4", "-v", "3" ]
+        },
+        {
+            "name": "bar2xml Example03",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "bar2xml.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example03.hl7", "-S", "schema/v2.4", "-v", "3" ]
+        },
+        {
+            "name": "bar2xml Example04",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "bar2xml.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example04.hl7", "-S", "schema/v2.4", "-v", "3" ]
+        }
+    ]
+}

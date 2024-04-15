@@ -1,0 +1,4 @@
+schema/v2.4/xsd/*
+schema/v2.4/*.csv
+*.ipynb
+*.log
