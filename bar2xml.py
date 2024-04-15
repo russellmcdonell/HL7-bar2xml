@@ -593,6 +593,5 @@ if __name__ == '__main__':
                 outputFile = os.path.join(outputDir, outputFile)
             elif outputFile == messageFile:
                 outputFile = 'XML_' + outputFile
-            with open(outputFile, 'wt', encoding='utf-8', newline='\r') as fpout:
-                s = chr(11) + s + chr(13) + chr(28)
+            with open(outputFile, 'wt', encoding='utf-8', newline='') as fpout:
                 print(s, file=fpout)
