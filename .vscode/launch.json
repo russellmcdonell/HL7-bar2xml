@@ -43,6 +43,46 @@
             "justMyCode": true,
             "cwd": "${workspaceFolder}/.",
             "args": ["-I", "testData", "-O", "testOutput", "-i", "example04.hl7", "-S", "schema/v2.4", "-v", "3" ]
+        },
+        {
+            "name": "xml2bar Example01",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "xml2bar.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example01.xml", "-v", "3" ]
+        },
+        {
+            "name": "xml2bar Example02",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "xml2bar.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example02.xml", "-v", "3" ]
+        },
+        {
+            "name": "xml2bar Example03",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "xml2bar.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example03.xml", "-v", "3" ]
+        },
+        {
+            "name": "xml2bar Example04",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "xml2bar.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": ["-I", "testData", "-O", "testOutput", "-i", "example04.xml", "-v", "3" ]
         }
     ]
 }

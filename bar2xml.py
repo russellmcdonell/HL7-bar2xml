@@ -4,7 +4,7 @@ Script bar2xml.py
 A script to convert an HL7 v2.x vertical bar message into a HL7 v2.xml XML tagged message
 
 
-This script reads an HL7 v2.x vertical bar message from <stdin>, or a files,
+This script reads an HL7 v2.x vertical bar message from <stdin>, or a file,
 or all the message files in a folder.
 
 
@@ -24,10 +24,10 @@ or all the message files in a folder.
 
     OPTIONS
     -I inputDir|--inputDir=inputDir
-    The folder containing the text document(s).
+    The folder containing the HL7 vertical bar message(s).
 
     -i inputFile|--inputFile=inputFile
-    The name of the clinical document to be AutoCoded.
+    The name of the HL7 vertical bar message file to be converted.
 
     -O outputDir|--outputDir=outputDir
     The folder where the output file(s) will be created.
