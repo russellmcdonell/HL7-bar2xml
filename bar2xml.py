@@ -34,6 +34,7 @@ or all the message files in a folder.
 
     -S schemaDir|--schemaDir=schemaDir
     The folder containing the HL7 v2.xml XML Schema files for the relevant version of HL7 v2.x
+    (default = 'schema/v2.4')
 
     -v loggingLevel|--verbose=loggingLevel
     Set the level of logging that you want.
@@ -119,7 +120,7 @@ def getDocument(fileName):
         return thisHL7message
 
 
-def createXML(sequenceList, tag, optional, depth):
+def createXML(sequenceList, tag, optional, isChoice, depth):
     '''
     Output an XML structure for all the elements in the sequence list where we have a matching segment in the Segments.
     PARAMETERS:
@@ -145,6 +146,8 @@ def createXML(sequenceList, tag, optional, depth):
     sequenceAt = 0
     thisElement = None
     tagged = False
+    occurs = 0
+    lastSeg = None
     while sequenceAt < len(sequenceList):
         if sequenceList[sequenceAt].attrib['ref'] != Segments[segmentNo][0:3]:
             # Check if this segment is here, after some optional segments
@@ -153,8 +156,16 @@ def createXML(sequenceList, tag, optional, depth):
                 groupOptional = False
                 if sequenceList[sequenceAt].attrib['minOccurs'] == '0':
                     groupOptional = True
+                thisChoice = False
                 groupList = messageRoot.find("xsd:complexType[@name='" + groupRef + ".CONTENT']/xsd:sequence", namespaces)
-                groupXML = createXML(groupList, groupRef, groupOptional, depth)
+                if groupList is None:
+                    groupList = messageRoot.find("xsd:complexType[@name='" + groupRef + ".CONTENT']/xsd:choice", namespaces)
+                    thisChoice = True
+                    if groupList is None:
+                        logging.critical('XML Schema definition missing either xsd:sequence or xsd:choice for %s', groupRef + '.CONTENT')
+                        logging.shutdown()
+                        sys.exit(EX_CONFIG)
+                groupXML = createXML(groupList, groupRef, groupOptional, thisChoice, depth)
                 if groupXML is not None:        # At least one segment was found at in this group
                     if not tagged:
                         thisElement = et.Element(tag)
@@ -187,8 +198,10 @@ def createXML(sequenceList, tag, optional, depth):
                 continue
             return thisElement
         # A matching segment
-        occurs = 0
         seg = Segments[segmentNo][0:3]
+        if (lastSeg is None) or (lastSeg != seg):
+            lastSeg = seg
+            occurs = 0
         if not tagged:
             thisElement = et.Element(tag)
             tagged = True
@@ -257,7 +270,9 @@ def createXML(sequenceList, tag, optional, depth):
         thisElement.append(segElement)
         segmentNo += 1
         if segmentNo == len(Segments):
-            break
+            return thisElement
+        if isChoice:
+            return thisElement
         occurs += 1
         maxOccurs = sequenceList[sequenceAt].attrib['maxOccurs']
         if maxOccurs == 'unbounded':
@@ -268,6 +283,7 @@ def createXML(sequenceList, tag, optional, depth):
         if sequenceAt < len(sequenceList):
             continue
     return thisElement
+
 
 def fixElement(thisElement, textType):
     '''
@@ -345,8 +361,8 @@ if __name__ == '__main__':
                         help='The name of the HL7 v2.x vertical bar encoded message file')
     parser.add_argument('-O', '--outputDir', dest='outputDir', default='.',
                         help='The folder where the HL7 v2.xml XML tagged message(s) will be created (default=".")')
-    parser.add_argument('-S', '--schemaDir', dest='schemaDir', required=True, default='schema/v2.4/xsd',
-                        help='The folder containing the HL7 v2.xml XML schema files (default="schema/v2.4/xsd")')
+    parser.add_argument('-S', '--schemaDir', dest='schemaDir', required=True, default='schema/v2.4',
+                        help='The folder containing the HL7 v2.xml XML schema files (default="schema/v2.4")')
     parser.add_argument ('-v', '--verbose', dest='verbose', type=int, choices=range(0,5),
                          help='The level of logging\n\t0=CRITICAL,1=ERROR,2=WARNING,3=INFO,4=DEBUG')
     parser.add_argument ('-L', '--logDir', dest='logDir', default='.', metavar='logDir',

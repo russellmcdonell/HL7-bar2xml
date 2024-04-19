@@ -83,6 +83,16 @@
             "justMyCode": true,
             "cwd": "${workspaceFolder}/.",
             "args": ["-I", "testData", "-O", "testOutput", "-i", "example04.xml", "-v", "3" ]
+        },
+        {
+            "name": "xsd2ams",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "utilities/xsd2ams.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": [ "-m", "ORM_O01", "-O", "testOutput","-v", "3" ]
         }
     ]
 }
