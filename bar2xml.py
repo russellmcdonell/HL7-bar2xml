@@ -589,7 +589,7 @@ if __name__ == '__main__':
 
         # Now create the HL7 v2.xml data
         segmentNo = 0
-        hl7XML = createXML(segmentList, msgStruct, False, 0)
+        hl7XML = createXML(segmentList, msgStruct, False, False, 0)
         hl7XML.attrib['xmlns'] = 'urn:hl7-org:v2xml'
         hl7XML.attrib['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance'
         hl7XML.attrib['xsi:schemaLocation'] = 'urn:hl7-org:v2xml ' + msgStruct + '.xsd'

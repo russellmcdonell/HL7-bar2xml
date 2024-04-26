@@ -85,14 +85,34 @@
             "args": ["-I", "testData", "-O", "testOutput", "-i", "example04.xml", "-v", "3" ]
         },
         {
-            "name": "xsd2ams",
+            "name": "xsd2ams Example01",
             "type": "debugpy",
             "request": "launch",
             "program": "utilities/xsd2ams.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "cwd": "${workspaceFolder}/.",
-            "args": [ "-m", "ORM_O01", "-O", "testOutput","-v", "3" ]
+            "args": [ "-O", "testOutput","-v", "3", "ORM_O01" ]
+        },
+        {
+            "name": "xsd2ams Example02",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "utilities/xsd2ams.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": [ "-O", "testOutput","-v", "3", "-o", "MFN Messages.xlsx", "MFN_M01", "MFN_M02", "MFN_M03", "MFN_M04", "MFN_M05", "MFN_M06", "MFN_M07", "MFN_M08", "MFN_M09", "MFN_M10", "MFN_M11", "MFN_M12" ]
+        },
+        {
+            "name": "xsd2train",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "utilities/xsd2train.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/.",
+            "args": [ "-m", "ORM_O01", "-O", "testOutput","-v", "2" ]
         }
     ]
 }
